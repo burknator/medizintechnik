@@ -5,10 +5,11 @@ from matplotlib.colors import NoNorm
 from matplotlib.animation import FuncAnimation
 from IPython.display import HTML, display, Math, Latex
 
-def show_matrix(data, title=None, mark=set()):
+def show_matrix(data, title=None, mark=set(), round_=True):
     # Helper-method to show a matrix
-    data = np.around(data).astype(int)
-    return display(Latex(r'\[\scriptstyle ' + (title.replace('_', '\_') + ' = ' if title else '') + r' \def\g{\color{lightgray}}\left(\begin{array}{%s}' % (r'r'*data.shape[0]) + r'\\'.join([r' & '.join([ value if (x, y) in mark or not mark else r'\g{%s}' % value for (y, value) in enumerate(map(str, col))]) for (x, col) in enumerate(data)]) + r'\end{array}\right)\]'))
+    if round_:
+        data = np.around(data).astype(int)
+    return display(Latex(r'\[\scriptstyle ' + (title + ' = ' if title else '') + r' \def\g{\color{lightgray}}\left(\begin{array}{%s}' % (r'r'*data.shape[0]) + r'\\'.join([r' & '.join([ value if (x, y) in mark or not mark else r'\g{%s}' % value for (y, value) in enumerate(map(str, col))]) for (x, col) in enumerate(data)]) + r'\end{array}\right)\]'))
 
 def show_matrix_with_kernel_and_result(data, kernel, kernel_x, kernel_y, result):
     # Helper-method to show a matrix
