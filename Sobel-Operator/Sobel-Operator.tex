@@ -307,6 +307,10 @@ S.12)
     \[\scriptstyle base\_averaged =  \def\g{\color{lightgray}}\left(\begin{array}{rrrrrrrrrr}1 & 3 & 3 & 4 & 3 & 2 & 2 & 2 & 2 & 1\\2 & 4 & 5 & 7 & 7 & 8 & 8 & 8 & 6 & 3\\4 & 9 & 16 & 17 & 17 & 16 & 16 & 14 & 8 & 3\\5 & 12 & 23 & 30 & 37 & 39 & 35 & 24 & 12 & 5\\6 & 15 & 27 & 36 & 50 & 56 & 50 & 31 & 12 & 4\\7 & 18 & 32 & 48 & 67 & 75 & 61 & 35 & 13 & 5\\7 & 16 & 28 & 42 & 58 & 60 & 48 & 25 & 9 & 3\\6 & 14 & 27 & 40 & 52 & 48 & 34 & 15 & 6 & 4\\3 & 6 & 11 & 17 & 25 & 21 & 15 & 5 & 4 & 2\\2 & 4 & 5 & 8 & 12 & 12 & 9 & 4 & 3 & 2\end{array}\right)\]
 
     
+    \newpage
+    \paragraph{}
+    Nach Grauwertspreizung:
+    
     \[\scriptstyle base\_averaged\_spread =  \def\g{\color{lightgray}}\left(\begin{array}{rrrrrrrrrr}0 & 5 & 6 & 8 & 5 & 4 & 2 & 4 & 3 & 0\\2 & 10 & 14 & 18 & 19 & 22 & 23 & 23 & 15 & 5\\8 & 26 & 51 & 55 & 54 & 50 & 52 & 44 & 23 & 7\\12 & 37 & 75 & 98 & 124 & 129 & 116 & 77 & 36 & 13\\17 & 46 & 88 & 119 & 167 & 188 & 169 & 102 & 39 & 10\\21 & 58 & 104 & 160 & 227 & 254 & 207 & 115 & 41 & 13\\18 & 49 & 94 & 140 & 194 & 201 & 160 & 81 & 28 & 7\\16 & 46 & 88 & 132 & 175 & 160 & 111 & 47 & 18 & 8\\6 & 16 & 34 & 54 & 81 & 68 & 47 & 14 & 9 & 4\\3 & 11 & 15 & 24 & 36 & 37 & 27 & 10 & 5 & 1\end{array}\right)\]
 
     
@@ -324,8 +328,18 @@ S.12)
 \subsubsection*{Sobel-Operator in
 x-Richtung}\label{sobel-operator-in-x-richtung}}
 
-    \[\scriptstyle S_x =  \def\g{\color{lightgray}}\left(\begin{array}{rrr}0.25 & 0.0 & -0.25\\0.5 & 0.0 & -0.5\\0.25 & 0.0 & -0.25\end{array}\right)\]
+    \paragraph{}
+    Erkennt abfallende Kanten von links nach rechts (wie im zweiten Bild von links):
 
+    \[\scriptstyle S_x =  \def\g{\color{lightgray}}\left(\begin{array}{rrr}0.25 & 0.0 & -0.25\\0.5 & 0.0 & -0.5\\0.25 & 0.0 & -0.25\end{array}\right)\]
+    
+    \paragraph{}
+    Erkennt abfallende Kanten von rechts nach links (nicht im Bild zu sehen):
+    
+    \[\scriptstyle S_{x2} =  \def\g{\color{lightgray}}\left(\begin{array}{rrr}-0.25 & 0.0 & 0.25\\-0.5 & 0.0 & 0.5\\-0.25 & 0.0 & 0.25\end{array}\right)\]
+
+    \paragraph{}
+    Im Folgenden Beispiel wird nur $S_x$ verwendet. $S_{x2}$ würde man allerdings exakt genauso verwenden, man dreht also beim Anwenden des Operators \textbf{nicht} die Richtung um.
     
     \[\scriptstyle \def\g{\color{lightgray}}\left(\begin{array}{rrrrrrrrrrrr}0\cdot 0.25 & 0\cdot 0.00 & 0\cdot -0.25 & \g{0} & \g{0} & \g{0} & \g{0} & \g{0} & \g{0} & \g{0} & \g{0} & \g{0}\\0\cdot 0.50 & 5\cdot 0.00 & 2\cdot -0.50 & \g{6} & \g{2} & \g{3} & \g{2} & \g{1} & \g{2} & \g{3} & \g{1} & \g{0}\\0\cdot 0.25 & 1\cdot 0.00 & 3\cdot -0.25 & \g{6} & \g{7} & \g{9} & \g{2} & \g{4} & \g{4} & \g{7} & \g{1} & \g{0}\\\g{0} & \g{1} & \g{5} & \g{8} & \g{8} & \g{10} & \g{17} & \g{21} & \g{19} & \g{9} & \g{4} & \g{0}\\\g{0} & \g{4} & \g{18} & \g{34} & \g{56} & \g{17} & \g{25} & \g{38} & \g{17} & \g{7} & \g{2} & \g{0}\\\g{0} & \g{1} & \g{14} & \g{22} & \g{43} & \g{68} & \g{91} & \g{62} & \g{23} & \g{16} & \g{7} & \g{0}\\\g{0} & \g{6} & \g{12} & \g{21} & \g{21} & \g{39} & \g{87} & \g{76} & \g{34} & \g{4} & \g{2} & \g{0}\\\g{0} & \g{9} & \g{24} & \g{54} & \g{73} & \g{88} & \g{95} & \g{69} & \g{16} & \g{12} & \g{5} & \g{0}\\\g{0} & \g{3} & \g{5} & \g{6} & \g{40} & \g{34} & \g{42} & \g{6} & \g{4} & \g{2} & \g{5} & \g{0}\\\g{0} & \g{4} & \g{9} & \g{16} & \g{14} & \g{32} & \g{51} & \g{13} & \g{6} & \g{6} & \g{2} & \g{0}\\\g{0} & \g{4} & \g{2} & \g{5} & \g{3} & \g{3} & \g{3} & \g{5} & \g{3} & \g{3} & \g{3} & \g{0}\\\g{0} & \g{0} & \g{0} & \g{0} & \g{0} & \g{0} & \g{0} & \g{0} & \g{0} & \g{0} & \g{0} & \g{0}\end{array}\right)=\left(\begin{array}{rrrrrrrrrrrr}-2 & \g{2} & \g{6} & \g{2} & \g{3} & \g{2} & \g{1} & \g{2} & \g{3} & \g{1}\\\g{1} & \g{3} & \g{6} & \g{7} & \g{9} & \g{2} & \g{4} & \g{4} & \g{7} & \g{1}\\\g{1} & \g{5} & \g{8} & \g{8} & \g{10} & \g{17} & \g{21} & \g{19} & \g{9} & \g{4}\\\g{4} & \g{18} & \g{34} & \g{56} & \g{17} & \g{25} & \g{38} & \g{17} & \g{7} & \g{2}\\\g{1} & \g{14} & \g{22} & \g{43} & \g{68} & \g{91} & \g{62} & \g{23} & \g{16} & \g{7}\\\g{6} & \g{12} & \g{21} & \g{21} & \g{39} & \g{87} & \g{76} & \g{34} & \g{4} & \g{2}\\\g{9} & \g{24} & \g{54} & \g{73} & \g{88} & \g{95} & \g{69} & \g{16} & \g{12} & \g{5}\\\g{3} & \g{5} & \g{6} & \g{40} & \g{34} & \g{42} & \g{6} & \g{4} & \g{2} & \g{5}\\\g{4} & \g{9} & \g{16} & \g{14} & \g{32} & \g{51} & \g{13} & \g{6} & \g{6} & \g{2}\\\g{4} & \g{2} & \g{5} & \g{3} & \g{3} & \g{3} & \g{5} & \g{3} & \g{3} & \g{3}\end{array}\right)\]
 
@@ -338,17 +352,25 @@ x-Richtung}\label{sobel-operator-in-x-richtung}}
     
     \[\scriptstyle x =  \def\g{\color{lightgray}}\left(\begin{array}{rrrrrrrrrr}-2 & -2 & -1 & 1 & 1 & 2 & 0 & -2 & 1 & 3\\-3 & -4 & -3 & -1 & 0 & 0 & -2 & 1 & 6 & 6\\-8 & -12 & -12 & 2 & 4 & -10 & 0 & 13 & 12 & 8\\-14 & -22 & -27 & -4 & 1 & -12 & 20 & 30 & 15 & 10\\-14 & -22 & -26 & -23 & -33 & -12 & 49 & 49 & 20 & 11\\-16 & -24 & -24 & -29 & -50 & -12 & 63 & 62 & 23 & 9\\-16 & -27 & -36 & -28 & -28 & 7 & 62 & 48 & 13 & 8\\-11 & -16 & -31 & -26 & -16 & 24 & 50 & 18 & 3 & 6\\-6 & -7 & -12 & -14 & -19 & 16 & 32 & 5 & 2 & 4\\-3 & -4 & -2 & -3 & -9 & 4 & 11 & 3 & 1 & 3\end{array}\right)\]
 
-    
     \[\scriptstyle x\_spread =  \def\g{\color{lightgray}}\left(\begin{array}{rrrrrrrrrr}109 & 109 & 111 & 114 & 116 & 118 & 112 & 109 & 116 & 120\\106 & 103 & 107 & 110 & 113 & 113 & 109 & 115 & 125 & 127\\95 & 85 & 86 & 118 & 123 & 92 & 114 & 142 & 140 & 131\\82 & 64 & 52 & 105 & 116 & 87 & 159 & 180 & 147 & 135\\80 & 64 & 54 & 61 & 40 & 87 & 223 & 222 & 157 & 137\\78 & 59 & 59 & 48 & 0 & 85 & 254 & 251 & 164 & 133\\76 & 52 & 33 & 49 & 50 & 129 & 252 & 219 & 142 & 130\\89 & 78 & 44 & 54 & 78 & 165 & 224 & 153 & 120 & 125\\99 & 97 & 87 & 80 & 70 & 148 & 184 & 124 & 117 & 122\\106 & 105 & 109 & 106 & 92 & 121 & 138 & 119 & 115 & 119\end{array}\right)\]
-
 
 \newpage    
     \hypertarget{sobel-operator-in-y-richtung}{%
 \subsubsection*{Sobel-Operator in
 y-Richtung}\label{sobel-operator-in-y-richtung}}
 
-    \[\scriptstyle S_y =  \def\g{\color{lightgray}}\left(\begin{array}{rrr}0.25 & 0.5 & 0.25\\0.0 & 0.0 & 0.0\\-0.25 & -0.5 & -0.25\end{array}\right)\]
+    \paragraph{}
+    Auch hier kann der Operator Kanten in zwei Richtungen erkennen. Diese Variante erkennt abfallende Kanten von oben nach unten (drittes Bild von links):
 
+    \[\scriptstyle S_y =  \def\g{\color{lightgray}}\left(\begin{array}{rrr}0.25 & 0.5 & 0.25\\0.0 & 0.0 & 0.0\\-0.25 & -0.5 & -0.25\end{array}\right)\]
+    
+    \paragraph{}
+    Tauscht man die erste und letzte Zeile, erkennt er abfallende Kanten von unten nach oben (nicht im Bild zu sehen):
+    
+    \[\scriptstyle S_{y2} =  \def\g{\color{lightgray}}\left(\begin{array}{rrr}-0.25 & -0.5 & -0.25\\0.0 & 0.0 & 0.0\\0.25 & 0.5 & 0.25\end{array}\right)\]
+    
+    \paragraph{}
+    Im Folgenden Beispiel wird nur $S_y$ verwendet. $S_{y2}$ würde man allerdings exakt genauso verwenden, man dreht also beim Anwenden des Operators \textbf{nicht} die Richtung um.
     
     \[\scriptstyle \def\g{\color{lightgray}}\left(\begin{array}{rrrrrrrrrrrr}0\cdot 0.25 & 0\cdot 0.50 & 0\cdot 0.25 & \g{0} & \g{0} & \g{0} & \g{0} & \g{0} & \g{0} & \g{0} & \g{0} & \g{0}\\0\cdot 0.00 & 5\cdot 0.00 & 2\cdot 0.00 & \g{6} & \g{2} & \g{3} & \g{2} & \g{1} & \g{2} & \g{3} & \g{1} & \g{0}\\0\cdot -0.25 & 1\cdot -0.50 & 3\cdot -0.25 & \g{6} & \g{7} & \g{9} & \g{2} & \g{4} & \g{4} & \g{7} & \g{1} & \g{0}\\\g{0} & \g{1} & \g{5} & \g{8} & \g{8} & \g{10} & \g{17} & \g{21} & \g{19} & \g{9} & \g{4} & \g{0}\\\g{0} & \g{4} & \g{18} & \g{34} & \g{56} & \g{17} & \g{25} & \g{38} & \g{17} & \g{7} & \g{2} & \g{0}\\\g{0} & \g{1} & \g{14} & \g{22} & \g{43} & \g{68} & \g{91} & \g{62} & \g{23} & \g{16} & \g{7} & \g{0}\\\g{0} & \g{6} & \g{12} & \g{21} & \g{21} & \g{39} & \g{87} & \g{76} & \g{34} & \g{4} & \g{2} & \g{0}\\\g{0} & \g{9} & \g{24} & \g{54} & \g{73} & \g{88} & \g{95} & \g{69} & \g{16} & \g{12} & \g{5} & \g{0}\\\g{0} & \g{3} & \g{5} & \g{6} & \g{40} & \g{34} & \g{42} & \g{6} & \g{4} & \g{2} & \g{5} & \g{0}\\\g{0} & \g{4} & \g{9} & \g{16} & \g{14} & \g{32} & \g{51} & \g{13} & \g{6} & \g{6} & \g{2} & \g{0}\\\g{0} & \g{4} & \g{2} & \g{5} & \g{3} & \g{3} & \g{3} & \g{5} & \g{3} & \g{3} & \g{3} & \g{0}\\\g{0} & \g{0} & \g{0} & \g{0} & \g{0} & \g{0} & \g{0} & \g{0} & \g{0} & \g{0} & \g{0} & \g{0}\end{array}\right)=\left(\begin{array}{rrrrrrrrrrrr}-1 & \g{2} & \g{6} & \g{2} & \g{3} & \g{2} & \g{1} & \g{2} & \g{3} & \g{1}\\\g{1} & \g{3} & \g{6} & \g{7} & \g{9} & \g{2} & \g{4} & \g{4} & \g{7} & \g{1}\\\g{1} & \g{5} & \g{8} & \g{8} & \g{10} & \g{17} & \g{21} & \g{19} & \g{9} & \g{4}\\\g{4} & \g{18} & \g{34} & \g{56} & \g{17} & \g{25} & \g{38} & \g{17} & \g{7} & \g{2}\\\g{1} & \g{14} & \g{22} & \g{43} & \g{68} & \g{91} & \g{62} & \g{23} & \g{16} & \g{7}\\\g{6} & \g{12} & \g{21} & \g{21} & \g{39} & \g{87} & \g{76} & \g{34} & \g{4} & \g{2}\\\g{9} & \g{24} & \g{54} & \g{73} & \g{88} & \g{95} & \g{69} & \g{16} & \g{12} & \g{5}\\\g{3} & \g{5} & \g{6} & \g{40} & \g{34} & \g{42} & \g{6} & \g{4} & \g{2} & \g{5}\\\g{4} & \g{9} & \g{16} & \g{14} & \g{32} & \g{51} & \g{13} & \g{6} & \g{6} & \g{2}\\\g{4} & \g{2} & \g{5} & \g{3} & \g{3} & \g{3} & \g{5} & \g{3} & \g{3} & \g{3}\end{array}\right)\]
 
@@ -369,6 +391,9 @@ y-Richtung}\label{sobel-operator-in-y-richtung}}
     \hypertarget{berechnung-der-kanten-sobel-operator-max}{%
 \section*{3) Berechnung der Kanten
 (Sobel-Operator-Max)}\label{berechnung-der-kanten-sobel-operator-max}}
+
+    \paragraph{}
+    Um diese Matrix zu bekommen, müssen die Matrizen $x$ und $y$ (\textbf{nicht} $x\_spread$ und $y\_spread$) herangezogen werden. Dazu geht man beide Matrizen Elementweise durch und übernimmt jeweils das Maximum für die Matrix $g$.
 
 
     \[\scriptstyle g =  \def\g{\color{lightgray}}\left(\begin{array}{rrrrrrrrrr}2 & 3 & 6 & 7 & 7 & 4 & 4 & 5 & 5 & 3\\3 & 4 & 3 & 5 & 9 & 14 & 18 & 15 & 8 & 6\\8 & 15 & 30 & 34 & 22 & 22 & 26 & 15 & 12 & 8\\14 & 22 & 27 & 36 & 56 & 62 & 40 & 30 & 15 & 10\\14 & 22 & 26 & 23 & 33 & 46 & 49 & 49 & 20 & 11\\16 & 24 & 26 & 29 & 50 & 12 & 63 & 62 & 23 & 9\\16 & 27 & 36 & 28 & 28 & 41 & 62 & 48 & 13 & 8\\11 & 18 & 38 & 53 & 54 & 50 & 50 & 20 & 6 & 6\\6 & 7 & 12 & 26 & 34 & 28 & 32 & 5 & 2 & 4\\4 & 10 & 14 & 19 & 32 & 37 & 21 & 8 & 5 & 3\end{array}\right)\]
